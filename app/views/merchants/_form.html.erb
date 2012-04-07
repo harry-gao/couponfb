@@ -1,0 +1,36 @@
+<%= form_for @merchant do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :name_on_coupon, "Name to be displayed on the coupon" %><br />
+    <%= f.text_field :name_on_coupon %>
+  </p>
+  <p>
+    <%= f.label :address,"Physical address for physical merchant, otherwise URL" %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label "confirm password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label :logo %><br />
+    <%= f.text_field :logo %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

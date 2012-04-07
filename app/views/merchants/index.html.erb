@@ -1,0 +1,32 @@
+<% title "Merchants" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Name On Coupon</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Password Hash</th>
+    <th>Password Salt</th>
+    <th>Deleted</th>
+    <th>Logo</th>
+  </tr>
+  <% for merchant in @merchants %>
+    <tr>
+      <td><%= merchant.name %></td>
+      <td><%= merchant.name_on_coupon %></td>
+      <td><%= merchant.address %></td>
+      <td><%= merchant.phone %></td>
+      <td><%= merchant.email %></td>
+      <td><%= merchant.password_hash %></td>
+      <td><%= merchant.password_salt %></td>
+      <td><%= merchant.deleted %></td>
+      <td><%= merchant.logo %></td>
+      <td><%= link_to "Show", merchant %></td>
+      <td><%= link_to "Edit", edit_merchant_path(merchant) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Merchant", new_merchant_path %></p>

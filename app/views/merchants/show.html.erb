@@ -1,0 +1,43 @@
+<% title "Merchant" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @merchant.name %>
+</p>
+<p>
+  <strong>Name On Coupon:</strong>
+  <%= @merchant.name_on_coupon %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= @merchant.address %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @merchant.phone %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @merchant.email %>
+</p>
+<p>
+  <strong>Password Hash:</strong>
+  <%= @merchant.password_hash %>
+</p>
+<p>
+  <strong>Password Salt:</strong>
+  <%= @merchant.password_salt %>
+</p>
+<p>
+  <strong>Deleted:</strong>
+  <%= @merchant.deleted %>
+</p>
+<p>
+  <strong>Logo:</strong>
+  <%= @merchant.logo %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_merchant_path(@merchant) %> |
+  <%= link_to "View All", merchants_path %>
+</p>

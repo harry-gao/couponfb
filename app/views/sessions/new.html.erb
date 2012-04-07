@@ -1,0 +1,18 @@
+<h1> Merchant login</h1>
+<%= form_tag sessions_path do %>
+    <% if flash.now[:alert] %>
+      <p class="notice"><%= flash[:alert] %></p>
+    <% end %>
+    <p>
+      <%= label_tag :email %> </br>
+      <%= text_field_tag :email, params[:email]%>
+    </p>
+    <p>
+      <%= label_tag :password %> </br>
+      <%= password_field_tag :password, params[:password]%>
+    </p>
+    <p class="button"><%= submit_tag "Log in" %> </p>
+<% end %>
+
+<h2> Don't have an account</h2>
+<p> <%= link_to "Join us today", :new_merchant %></p>

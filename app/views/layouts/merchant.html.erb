@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag "merchant" %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <h1><a href="#">CouponFB   </a></h1>
+                <p> share & gain</p>
+            </div>
+        </div>
+        <!-- end #header -->
+        <div id="menu">
+            <ul>
+            <li class="current_page_item"><a href="#">Home</a></li>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Coupon usage</a></li>
+            <li><a href="#">Contact CouponFB</a></li>
+            <li><a href=<%= merchant_logout_url %>>Log out</a></li>
+        </ul>
+        </div>
+        <div id="content">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+          <%= content_tag :h1, yield(:title) if show_title? %>
+          <%= yield %>
+        </div>
+     </div>
+    <div id="footer">
+            <p>Copyright (c) 2012 couponfb.com. All rights reserved.</p>
+        </div>
+  </body>
+</html>
