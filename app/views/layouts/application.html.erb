@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Couponfb</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag :application, "merchant" %>
+    <%= javascript_include_tag :application %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="wrapper">
+        <div id="header">
+          <div id="logo">
+              <h1><a href="#">CouponFB</a></h1>
+              <p> share & gain</p>
+          </div>
+          <div id='logged_in_panel'>Logged in as:
+            <span id='fb_user_name'></span><br/>
+            <button id='fb_log_out' title="logout">logout</button>
+          </div>
+          <div id='not_logged_in_panel'><div class="fb-login-button">Login with Facebook</div></div>
+        </div>
+        <!-- end #header -->
+        <div id="menu">
+            <ul>
+            <li class="current_page_item"><a href=<%= root_url %>>Home</a></li>
+            <li><a href="<%= merchant_path(session[:merchant_id]) %>">My coupons</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact us</a></li>
+        </ul>
+        </div>
+        <div id="content">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+          <%= content_tag :h1, yield(:title) if show_title? %>
+          <%= yield %>
+        </div>
+     </div>
+    <div id="footer">
+            <p>Copyright (c) 2012 couponfb.com. All rights reserved.</p>
+        </div>
 
-<%= yield %>
+  <div id="fb-root"></div>
+      <script>
 
-</body>
+      </script>
+
+
+    <div id="fb_login_dialog" title="Please login">
+      <p>To get the current discount, please login to your facebook account and share with your friends</p>
+      <div class="fb-login-button">Login with Facebook</div>
+    </div>
+  </body>
 </html>

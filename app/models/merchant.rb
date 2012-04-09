@@ -8,6 +8,8 @@ class Merchant < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  has_many :coupons
+
 
   def encrypt_password
     if password.present?

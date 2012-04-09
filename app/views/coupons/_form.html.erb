@@ -1,0 +1,20 @@
+<%= form_for @coupon do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :short_desc %><br />
+    <%= f.text_field :short_desc %>
+  </p>
+  <p>
+    <%= f.label :long_desc %><br />
+    <%= f.text_field :long_desc %>
+  </p>
+  <p>
+    <%= f.label :expire_date %><br />
+    <%= f.datetime_select :expire_date %>
+  </p>
+  <p>
+    <%= f.label :ad %><br />
+    <%= f.text_field :ad %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

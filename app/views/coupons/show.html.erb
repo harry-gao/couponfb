@@ -1,0 +1,24 @@
+<% title "Coupon" %>
+
+<p>
+  <strong>Short Desc:</strong>
+  <%= @coupon.short_desc %>
+</p>
+<p>
+  <strong>Long Desc:</strong>
+  <%= @coupon.long_desc %>
+</p>
+<p>
+  <strong>Expire Date:</strong>
+  <%= @coupon.expire_date %>
+</p>
+<p>
+  <strong>Ad:</strong>
+  <%= @coupon.ad %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_coupon_path(@coupon) %> |
+  <%= link_to "Destroy", @coupon, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", coupons_path %>
+</p>

@@ -1,13 +1,19 @@
 class MerchantsController < ApplicationController
   layout "merchant"
 
-  before_filter :require_login, :except => [:create, :new]
+  before_filter :merchant_logged_in, :except => [:create, :new]
 
   def index
-    @merchants = Merchant.all
+    @coupons = Coupon.find_all_by_merchant_id(session[:merchant_id])
+    render 'coupons/index'
   end
 
-    def show
+  def home
+    @coupons = Coupon.find_all_by_merchant_id(session[:merchant_id])
+    render 'coupons/index'
+  end
+
+  def show
     @merchant = Merchant.find(params[:id])
   end
 
@@ -37,10 +43,4 @@ class MerchantsController < ApplicationController
     @merchant = Merchant.new
   end
 
-  private
-  def require_login
-    unless session[:merchant_id] != nil
-      redirect_to merchant_login_url
-    end
-  end
 end

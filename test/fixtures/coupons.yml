@@ -1,0 +1,11 @@
+one:
+  short_desc: MyString
+  long_desc: MyString
+  expire_date: 2012-04-09 12:49:53
+  ad: MyString
+
+two:
+  short_desc: MyString
+  long_desc: MyString
+  expire_date: 2012-04-09 12:49:53
+  ad: MyString

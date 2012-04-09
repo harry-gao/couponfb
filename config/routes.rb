@@ -1,6 +1,9 @@
 Couponfb::Application.routes.draw do
+  resources :coupons
+
   get "merchant_login" => "sessions#new", :as => "merchant_login"
   get "merchant_logout" => "sessions#destroy", :as => "merchant_logout"
+  get "merchant_home" => "merchants#home", :as => "merchant_home"
   resources :merchants
   resources :sessions
 
@@ -53,7 +56,7 @@ Couponfb::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'coupons#hot'
 
   # See how all your routes lay out with "rake routes"
 
