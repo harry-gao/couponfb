@@ -4,15 +4,13 @@ $(function() {
 			title: 'Welcome to couponfb'
 		});
 
-	$('.apply_button').click(function(eventObject) {
+	$('.apply').click(function(eventObject) {
         $current_apply_item = eventObject.currentTarget;
 
-        if(!g_fb_connected)
-        {
+        if(!g_fb_connected){
 		    $login_dialog.dialog('open');
         }
-        else
-        {
+        else{
             postToFeed();
         }
 		return false;
@@ -84,12 +82,16 @@ function postToFeed()
 
     function callback(response) {
         if(response && response['post_id']){
-            alert('thank you, code is 1234');
+            $.get("/coupons/get_coupon_code/" + $current_apply_item.dataset.id,  showCouponCode);
         }
         else
         {
             alert('sorry you have to share the information to get the code');
         }
+    }
+
+    function showCouponCode(response){
+        alert(response);
     }
 
     FB.ui(obj, callback);

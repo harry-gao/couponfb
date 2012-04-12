@@ -18,12 +18,14 @@
         <!-- end #header -->
         <div id="menu">
             <ul>
+            <% if session[:merchant_id] %>
             <li class="current_page_item"><a href= '<%= merchant_home_url %>'>Home</a></li>
             <li><a href='<%= merchant_url(session[:merchant_id]) %>'>My Account</a></li>
             <li><a href='<%= new_coupon_url %>'>Publish coupon</a></li>
             <li><a href="#">Coupon usage</a></li>
             <li><a href="#">Contact CouponFB</a></li>
             <li><a href=<%= merchant_logout_url %>>Log out</a></li>
+            <% end %>
         </ul>
         </div>
         <div id="content">

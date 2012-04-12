@@ -1,10 +1,18 @@
 class CouponsController < ApplicationController
   layout "merchant"
-  before_filter :merchant_logged_in
+  before_filter :merchant_logged_in, :only => [:new, :create, :show, :edit, :update, :destroy]
 
   def hot
     @coupons = Coupon.all
     render :layout => "application"
+  end
+
+  def get_coupon_code
+    if request.host != Rails.application.config.host
+      render :text => "Not authorized"
+    else
+      render :text => "you got it" + params[:id];
+    end
   end
 
   def index

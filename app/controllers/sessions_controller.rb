@@ -16,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:merchant_id] = nil
-    redirect_to merchants_url
+    redirect_to merchant_home_url
   end
 end

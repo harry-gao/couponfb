@@ -1,33 +1,21 @@
 <% title "Coupons" %>
 
-<table>
-  <tr>
-    <th>Short Desc</th>
-    <th>Long Desc</th>
-    <th>Expire Date</th>
-    <th>Ad</th>
-  </tr>
+<ul>
   <% for coupon in @coupons %>
       <% merchant = Merchant.find(coupon.merchant_id) %>
-    <tr>
-      <td><%= coupon.short_desc %></td>
-      <td><%= coupon.long_desc %></td>
-      <td><%= coupon.expire_date %></td>
-      <td><%= coupon.ad %></td>
-      <td><%= link_to "Show", coupon %></td>
-      <td><a href="#" data-link='<%= merchant.address %>'
-             data-title="<%= merchant.name %>"
-             data-ad="a short des from merchant"
-             data-pic="http://fbrell.com/f8.jpg"
-             class="apply_button">Apply</a></td>
-      <td><%= link_to "Destroy", coupon, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+    <li class="coupon">
+      <div class="mlogo">
+        <a href="#"><img src="<%= asset_path(merchant.logo)%>" alt=<%= merchant.name%>></a>
+      </div>
+      <div class="c_detail">
+        <h3><%= coupon.short_desc %></h3>
+        <span><%= coupon.expire_date %></span>
+        <a class='apply' href="#" data-link='<%= merchant.address %>'
+                   data-title="<%= merchant.name %>"
+                   data-id="<%=coupon.id %>"
+                   data-ad="<%=coupon.ad %>"
+                   data-pic="<%= path_to_url(merchant.logo) %>">Apply</a>
+      </div>
+      </li>
   <% end %>
-</table>
-
-<p><%= link_to "New Coupon", new_coupon_path %></p>
-
-<div id="fb_share_dialog" title="Share the merchant with your friends">
-      <p>Please share the merchant information with your friends to get the discount</p>
-      <p><a onclick='postToFeed("test msg"); return false;'>Post to Feed</a></p>
-</div>
+</ul>
