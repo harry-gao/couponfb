@@ -8,7 +8,7 @@ development:
   socket: /var/lib/mysql/mysqld.sock
 #NOTE: when deployed to AWS, something is different:
   #username: root
-  #password: root1234.
+  #password: topview
   #socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and

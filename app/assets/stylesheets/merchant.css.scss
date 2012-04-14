@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFFFFF url(<%=asset_path "img01.jpg" %>) repeat-x left top;
+	background: #FFFFFF asset-url("img01.jpg", image) repeat-x left top;
 	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
 	font-size: 12px;
 	color: #787878;
@@ -54,7 +54,7 @@ a:hover {
 	width: 940px;
 	height: 148px;
 	margin: 0 auto;
-	background: url(<%= asset_path "img04.jpg" %>) no-repeat left 20px;
+	background: asset-url("img04.jpg", image) no-repeat left 20px;
 }
 
 /* Logo */
@@ -189,12 +189,12 @@ a:hover {
 }
 
 #menu a:hover, #menu .current_page_item a {
-	background: #659CEF url(<%= asset_path "img03.jpg" %>) repeat-x left bottom;
+	background: #659CEF asset-url("img03.jpg", image) repeat-x left bottom;
 	text-decoration: none;
 }
 
 #menu .current_page_item a {
-	background: #FBFBFC url(<%= asset_path "img02.jpg" %>) repeat-x left bottom;
+	background: #FBFBFC asset-url("img02.jpg", image) repeat-x left bottom;
 	padding-left: 0;
 	color: #30476A;
 }
