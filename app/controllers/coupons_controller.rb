@@ -9,7 +9,7 @@ class CouponsController < ApplicationController
 
   def get_coupon_code
     if request.host != Rails.application.config.host
-      render :text => "Not authorized"
+      render :text => "Not authorized, req come from " + request.host + " but we want " + Rails.application.config.host
     else
       render :text => "you got it" + params[:id];
     end
