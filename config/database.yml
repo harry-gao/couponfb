@@ -29,5 +29,5 @@ production:
   database: couponfb_production
   username: root
   host:  127.0.0.1
-  password: topview
+  password:
   socket: /var/run/mysqld/mysqld.sock
