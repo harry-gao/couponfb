@@ -28,6 +28,6 @@ production:
   encoding: utf8
   database: couponfb_production
   username: root
-  password:
   host:  127.0.0.1
-  socket: /var/lib/mysql/mysqld.sock
+  password: topview
+  socket: /var/run/mysqld/mysqld.sock
