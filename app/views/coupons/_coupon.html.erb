@@ -1,0 +1,15 @@
+<% merchant = Merchant.find(coupon.merchant_id) %>
+<li class="coupon">
+  <div class="mlogo">
+    <a href="#"><img src="<%= asset_path(merchant.logo)%>" alt=<%= merchant.name%>></a>
+  </div>
+  <div class="c_detail">
+    <h3><%= coupon.short_desc %></h3>
+    <span><%= coupon.expire_date %></span>
+    <a class='apply' href="#" data-link='<%= merchant.address %>'
+               data-title="<%= merchant.name %>"
+               data-id="<%=coupon.id %>"
+               data-ad="<%=coupon.ad %>"
+               data-pic="<%= path_to_url(merchant.logo) %>">Apply</a>
+  </div>
+</li>
