@@ -77,7 +77,9 @@ function postToFeed()
       link: $current_apply_item.dataset.link,
       picture: $current_apply_item.dataset.pic,
       name: $current_apply_item.dataset.title,
-      caption: $current_apply_item.dataset.ad
+      caption: $current_apply_item.dataset.ad,
+      privacy:ALL_FRIENDS
+
     };
 
     function callback(response) {
@@ -96,4 +98,3 @@ function postToFeed()
 
     FB.ui(obj, callback);
 }
-

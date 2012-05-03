@@ -11,7 +11,7 @@ class CouponsController < ApplicationController
     if request.host != Rails.application.config.host
       render :text => "Not authorized, req come from " + request.host + " but we want " + Rails.application.config.host
     else
-      render :text => "you got it" + params[:id];
+      render :text => "coupon code is 123456"
     end
   end
 

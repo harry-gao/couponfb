@@ -31,6 +31,13 @@
     padding-left: 110px;
 }
 
+#fbpreview{
+    border-bottom: solid 1px #dddddd;
+    border-top: solid 1px #dddddd;
+    float: right;
+
+}
+
 .apply {
     background-color: #3B5998;
     background-image: -moz-linear-gradient(center top , #627AAD, #3B5998);

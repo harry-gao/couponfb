@@ -1,0 +1,10 @@
+<div id='fbpreview'>
+  <% merchant = Merchant.find(session[:merchant_id]) %>
+  <div class="mlogo">
+    <%= image_tag(merchant.logo) %>
+  </div>
+  <div>
+     <p><%= merchant.name %>   </p>
+    <p id='ad_preview'>your ad here</p>
+  </div>
+</div>

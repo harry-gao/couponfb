@@ -1,5 +1,4 @@
 class MerchantsController < ApplicationController
-  layout "merchant"
 
   before_filter :merchant_logged_in, :except => [:create, :new]
 
