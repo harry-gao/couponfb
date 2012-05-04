@@ -1,29 +1,104 @@
-$(function() {
-    $login_dialog = $("#fb_login_dialog").dialog({
-			autoOpen: false,
-			title: 'Welcome to couponfb'
-		});
+var couponfb = (function(){
+    var fb_connected = false;
+    var login_dialog;
+    var applying_item;
 
-	$('.apply').click(function(eventObject) {
-        $current_apply_item = eventObject.currentTarget;
+    function  fb_connectionStatusChanged (response){
+        if(response.status=="connected"){
+            fb_connected = true;
+            $("#logged_in_panel").css('display', 'block');
+            FB.api('/me', function(response) {
+                $('#fb_user_name').html(response.name);
+            });
+            $("#not_logged_in_panel").css('display', 'none');
 
-        if(!g_fb_connected){
-		    $login_dialog.dialog('open');
+            if(login_dialog.dialog( "isOpen" )){
+                login_dialog.dialog('close');
+                postToFeed();
+            }
         }
         else{
-            postToFeed();
+            fb_connected = false;
+            $("#logged_in_panel").css('display', 'none');
+            $("#not_logged_in_panel").css('display', 'block');
         }
-		return false;
-	});
+    }
 
-    $('#fb_log_out').click(function(){
-       FB.logout();
-    });
+    function fb_postFeed(){
+        var obj = {
+            method: 'feed',
+            link: applying_item.dataset.link,
+            picture: applying_item.dataset.pic,
+            name: applying_item.dataset.title,
+            caption: applying_item.dataset.ad,
+            privacy:ALL_FRIENDS
+        };
+
+        function callback(response) {
+            if(response && response['post_id']){
+                $.get("/coupons/get_coupon_code/" + applying_item.dataset.id,  showCouponCode);
+            }
+            else
+            {
+                alert('sorry you have to share the information to get the code');
+            }
+        }
+
+        function showCouponCode(response){
+            alert(response);
+        }
+
+        FB.ui(obj, callback);
+    }
+
+    return {
+        init : function(){
+            login_dialog = $("#fb_login_dialog").dialog({
+                autoOpen: false,
+                title: 'Welcome to couponfb'
+            });
+
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '207038556072765',
+                status     : false,
+                cookie     : true,
+                xfbml      : true,
+                oauth      : true
+                });
+
+                FB.getLoginStatus(function(response) {fb_connectionStatusChanged(response)});
+
+                FB.Event.subscribe('auth.statusChange', function(response) {fb_connectionStatusChanged(response)});
+            };
+        },
+
+        bind_controls : function(){
+            $('.apply').click(function(eventObject) {
+                applying_item = eventObject.currentTarget;
+
+                if(!fb_connected){
+                    login_dialog.dialog('open');
+                }
+                else{
+                    fb_postFeed();
+                }
+                return false;
+	        });
+
+            $('#fb_log_out').click(function(){
+                FB.logout();
+            });
+        }
+
+    };
+})();
+
+$(function() {
+    couponfb.init();
+    couponfb.bind_controls();
+
 });
-
-var g_fb_connected = false;
-var $login_dialog;
-var $current_apply_item;
 
 
 (function(d){
@@ -33,68 +108,3 @@ var $current_apply_item;
     d.getElementsByTagName('head')[0].appendChild(js);
 }(document));
 
-window.fbAsyncInit = function() {
-    FB.init({
-    appId      : '207038556072765',
-    status     : false,
-    cookie     : true,
-    xfbml      : true,
-    oauth      : true
-    });
-
-    FB.getLoginStatus(function(response) {connectionStatusChanged(response)});
-
-    FB.Event.subscribe('auth.statusChange', function(response) {connectionStatusChanged(response)});
-};
-
-
-function connectionStatusChanged(response)
-{
-  if(response.status=="connected"){
-      g_fb_connected = true;
-      $("#logged_in_panel").css('display', 'block');
-      FB.api('/me', function(response) {
-          $('#fb_user_name').html(response.name);
-        });
-      $("#not_logged_in_panel").css('display', 'none');
-
-      if($login_dialog.dialog( "isOpen" )){
-          $login_dialog.dialog('close');
-          postToFeed();
-      }
-  }
-  else{
-      g_fb_connected = false;
-      $("#logged_in_panel").css('display', 'none');
-      $("#not_logged_in_panel").css('display', 'block');
-  }
-}
-
-function postToFeed()
-{
-    var obj = {
-      method: 'feed',
-      link: $current_apply_item.dataset.link,
-      picture: $current_apply_item.dataset.pic,
-      name: $current_apply_item.dataset.title,
-      caption: $current_apply_item.dataset.ad,
-      privacy:ALL_FRIENDS
-
-    };
-
-    function callback(response) {
-        if(response && response['post_id']){
-            $.get("/coupons/get_coupon_code/" + $current_apply_item.dataset.id,  showCouponCode);
-        }
-        else
-        {
-            alert('sorry you have to share the information to get the code');
-        }
-    }
-
-    function showCouponCode(response){
-        alert(response);
-    }
-
-    FB.ui(obj, callback);
-}
