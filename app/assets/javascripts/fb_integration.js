@@ -30,6 +30,7 @@ var couponfb = (function(){
             link: applying_item.dataset.link,
             picture: applying_item.dataset.pic,
             name: applying_item.dataset.title,
+            privacy: {value: "ALL_FRIENDS"},
             caption: applying_item.dataset.ad
         };
 
