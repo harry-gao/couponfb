@@ -6,5 +6,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree
+//= require fb_integration
 //= require jquery-ui

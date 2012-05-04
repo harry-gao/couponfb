@@ -14,7 +14,7 @@ var couponfb = (function(){
 
             if(login_dialog.dialog( "isOpen" )){
                 login_dialog.dialog('close');
-                postToFeed();
+                fb_postFeed();
             }
         }
         else{
@@ -97,7 +97,6 @@ var couponfb = (function(){
 $(function() {
     couponfb.init();
     couponfb.bind_controls();
-
 });
 
 
