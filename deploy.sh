@@ -6,11 +6,12 @@ if [ "$#" -ne 1 ]
 fi
 
 
-#bundle exec rake assets:precompile
+bundle exec rake assets:precompile
 
-#git add .
-#echo git commit -m "\"$1\""
+git add .
+echo git commit -m "\"$1\""
 git commit -a -m "\"$1\""
 
-#git push origin master
-#cap deploy:update
+git push origin master
+cap deploy:update
+cap deploy:restart
