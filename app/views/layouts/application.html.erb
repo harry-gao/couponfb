@@ -8,39 +8,74 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="wrapper">
-        <div id="header">
-          <div id="logo">
-              <h1><a href="#">CouponFB</a></h1>
-              <p> share & gain</p>
-          </div>
-          <div id='logged_in_panel'>Welcome:
+  <div id="krBar" class="container hide-on-phones">
+    <div class="row" id="kb_inner">
+      <div id="topmenu" class="eight columns">
+        <ul class="nav-bar"><li class="has-flyout">
+          <li><%= link_to 'Publish Coupon', new_coupon_path %></li>
+          <li><%= link_to 'Contact Us', 'application/contact_us' %></li>
+          <li><%= link_to 'About', 'application/about' %></li>
+          <li><%= link_to 'Blog', 'application/blog' %></li>
+        </ul>
+      </div>
+      <div class="four columns">
+        <div class="right" style="margin-top:4px">
+          <a class="small button radius">+ Like</a>
+          <a class="small red button radius">+RSS</a>
+          <a class="small white button radius">+ Merchant</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="header" role="main" class="container">
+    <header class="row">
+      <%= image_tag 'title.png',  :width=>"728", :height=>"90", :border=>"0" %>
+
+      <div class="three columns fr">
+        <div id='logged_in_panel'>Welcome:
             <span id='fb_user_name'></span>
             <button id='fb_log_out' title="logout" class="btn primary">Logout</button>
           </div>
-          <div id='not_logged_in_panel'><div class="fb-login-button">Login with Facebook</div></div>
+          <div id='not_logged_in_panel'>
+            <div class="fb-login-button">Login with Facebook</div>
+          </div>
         </div>
-        <!-- end #header -->
-        <div id="menu">
-            <ul>
-            <li class="current_page_item"><a href=<%= root_url %>>Home</a></li>
-            <li><a href="/application/about">About</a></li>
-            <li><a href="/application/contact">Contact us</a></li>
-        </ul>
-        </div>
-        <div id="content">
-          <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-          <% end %>
-          <%= content_tag :h1, yield(:title) if show_title? %>
-          <%= yield %>
-        </div>
-     </div>
-    <div id="footer">
-            <p>Copyright (c) 2012 couponfb.com. All rights reserved.</p>
+    </header>
+  </div>
+  <div class="container singlerow">
+    <div class="row mg15">
+        <div id="main_nav" class="two columns show-on-desktops">
+
         </div>
 
-  <div id="fb-root"></div>
+        <div id="posts" class="seven columns maincol">
+            <div id="content">
+              <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+              <% end %>
+              <%= yield %>
+            </div>
+        </div>
+        <aside class="hide-on-phones sidebarcol three columns">
+          <div class="featuredbox show-on-desktops"><a target="_blank" href="http://cnrdn.com/iSn4"><img alt="唐茶" src="http://img05.36krcnd.com/wp-content/uploads/krads-images/tangcha_ad_36kr.png" class="aligncenter"></a></div>
+          <div class="krads show-on-desktops"><a target="_blank" href="http://www.eoeandroid.com"><img alt="eoe开发者门户" src="http://img05.36krcnd.com/wp-content/uploads/krads-images/36kr--eoe2静态1.jpg" class="aligncenter"></a></div>
+        </aside>
+    </div>
+  </div>
+  <div id="footer" class="container">
+    <footer class="row">
+    <section class="three columns show-on-desktops">
+      <p><a href="/about/">Contact us</a></p>
+      </section>
+    <section class="five columns">
+      <p><a href="/about/">About Conpoineer</a></p>
+    </section>
+    <section class="four columns show-on-desktops" style="color:gray">
+    <p class="">&copy; 2012 Coupioneer</p><p> </p></section>
+  </footer>
+  </div>
+
+   <div id="fb-root"></div>
   <div id="fb_login_dialog" title="Please login">
       <p>To get the current discount, please login to your facebook account and share with your friends</p>
       <div class="fb-login-button">Login with Facebook</div>

@@ -2,9 +2,11 @@ var couponfb = (function(){
     var fb_connected = false;
     var login_dialog;
     var applying_item;
+    var access_token;
 
     function  fb_connectionStatusChanged (response){
         if(response.status=="connected"){
+            access_token = response.authResponse.accessToken;
             fb_connected = true;
             $("#logged_in_panel").css('display', 'block');
             FB.api('/me', function(response) {
@@ -51,6 +53,40 @@ var couponfb = (function(){
         FB.ui(obj, callback);
     }
 
+    function bindApplyButton(){
+        $('.apply').click(function(eventObject) {
+            applying_item = eventObject.currentTarget;
+
+            if(!fb_connected){
+                login_dialog.dialog('open');
+            }
+            else{
+                fb_postFeed();
+            }
+            return false;
+        });
+    }
+
+    function bindMenu(){
+        $('#menu').click( function(e){
+            var target = e.target;
+            if(target != undefined){
+                var current_item = $(this).find('.current_page_item');
+                if(target == current_item)
+                    return false;
+                current_item.attr('class', '');
+                target.parentNode.attr('class', '.current_page_item');
+                window.location.href = target.attribute['href'];
+            }
+        })
+    }
+
+    function bindFbLogOut(){
+        $('#fb_log_out').click(function(){
+            FB.logout();
+        });
+    }
+
     return {
         init : function(){
             login_dialog = $("#fb_login_dialog").dialog({
@@ -74,31 +110,13 @@ var couponfb = (function(){
         },
 
         bind_controls : function(){
-            $('.apply').click(function(eventObject) {
-                applying_item = eventObject.currentTarget;
-
-                if(!fb_connected){
-                    login_dialog.dialog('open');
-                }
-                else{
-                    fb_postFeed();
-                }
-                return false;
-	        });
-
-            $('#fb_log_out').click(function(){
-                FB.logout();
-            });
+            bindApplyButton();
+            bindFbLogOut();
+            bindMenu();
         }
 
     };
 })();
-
-$(function() {
-    couponfb.init();
-    couponfb.bind_controls();
-});
-
 
 (function(d){
     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
@@ -106,4 +124,9 @@ $(function() {
     js.src = "//connect.facebook.net/en_US/all.js";
     d.getElementsByTagName('head')[0].appendChild(js);
 }(document));
+
+$(function() {
+    couponfb.init();
+    couponfb.bind_controls();
+});
 

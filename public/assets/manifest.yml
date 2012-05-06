@@ -1,11 +1,16 @@
 --- 
+bg_hd.gif: bg_hd-39f4167b83888b4fc3f5b7b6956f5ae0.gif
 img01.jpg: img01-70e00bf6af832b4c9b81fcc3eea8579d.jpg
 img02.jpg: img02-6268c8c4dfa7947f7faeb8b21aa1cfed.jpg
 img03.jpg: img03-8275e92313bcefa25c1e0e5c2576d149.jpg
 img04.jpg: img04-7b4e0e781610de6c7472370b3c2878a1.jpg
+logo03.png: logo03-d13b42ca3d1fa7a9b32d3bd8928adfad.png
+logo2.png: logo2-1048ce11b501447e9a99368ea576f69e.png
+logo3.png: logo3-7e309e014f3b616df8786dca120cee9e.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
-application.js: application-b499a4b62e4e55ba79c5165f3eb98c00.js
-application.css: application-4fd7dad6aef970810ea1cc0189a44d81.css
+title.png: title-f1e2a9dc16a7ecd7f77633262fbc06fb.png
+application.js: application-98b99457b2832af921a7a379831ccffd.js
+application.css: application-01f9478fa5e2d4c48095cd6b7e327d89.css
 images/ui-bg_diagonals-thick_18_b81900_40x40.png: images/ui-bg_diagonals-thick_18_b81900_40x40-aad52b14967fe4ebe93f0c2a3ed9cb1f.png
 images/ui-bg_diagonals-thick_20_666666_40x40.png: images/ui-bg_diagonals-thick_20_666666_40x40-ee60a44209d06000b6d665cc1b1c28de.png
 images/ui-bg_flat_10_000000_40x100.png: images/ui-bg_flat_10_000000_40x100-b445178f2c744b1d511ad862497ffc57.png

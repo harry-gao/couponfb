@@ -1,9 +1,14 @@
+#logged_in_panel,  #not_logged_in_panel{
+    display: none;
+    color: #3B5998;
+}
+
 .coupon {
     height: 110px;
     vertical-align: middle;
     padding-top: 10px;
     list-style: none outside none;
-    border-bottom: dashed #dddddd 1px;
+    border-bottom: dashed orange 3px;
 }
 
 .mlogo {
@@ -29,6 +34,11 @@
 
 .c_detail{
     padding-left: 110px;
+}
+
+.c_detail h3{
+    color: #2A85E8;
+    font-size: 22px;
 }
 
 #fbpreview{
