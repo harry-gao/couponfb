@@ -5,7 +5,7 @@ if [ "$#" -ne 1 ]
    exit 1
 fi
 
-
+ssh-add ~/.ssh/ec2_ubuntu.pem
 bundle exec rake assets:precompile
 
 git add .
